@@ -1,5 +1,7 @@
 package com.company;
 
+import java.util.Objects;
+
 public class MenuItem {
     private double price;
     private String description;
@@ -34,5 +36,30 @@ public class MenuItem {
         this.price = newPrice;
     }
 
+
+
+    public boolean equals(Object toBeCompared) {
+
+        if (toBeCompared == this) {
+            return true;
+        }
+
+        if (toBeCompared == null) {
+            return false;
+        }
+
+        if (toBeCompared.getClass() != getClass()) {
+            return false;
+        }
+
+        MenuItem theItem = (MenuItem) toBeCompared;
+        return theItem.getPrice() == getPrice() && theItem.isNewItem() == isNewItem() && theItem.getCategory() == getCategory()
+                && theItem.getDescription() == getDescription();
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(price, description, category, newItem);
+    }
 }
 
